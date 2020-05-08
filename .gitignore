@@ -1,0 +1,16 @@
+#environment
+
+env/
+.
+
+#C files
+*.(c)
+
+#cache
+
+__pycache__
+
+#Database
+
+app.db
+migrations
