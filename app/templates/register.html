@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="" method='POST' novalidate>
+       {{ form.hidden_tag() }}
+       <p>
+           {{ form.email.label }}<br>
+           {{ form.email(size=32) }}
+           {% if form.email.errors %}
+           {% for error in form.email.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %} 
+           {% endif %}
+      </p>
+       <p>
+           {{ form.name.label }}<br>
+           {{ form.name(size=32) }}
+           {% if form.name.errors %}
+           {% for error in form.name.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %}
+            {% endif %}
+        </p>
+       <p>
+           {{ form.username.label }}<br>
+           {{ form.username(size=32) }}
+           {% if form.username.errors %}
+           {% for error in form.username.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %} 
+           {% endif %}
+        </p>
+       <p>
+           {{ form.country.label }}<br>
+           {{ form.country(size=32) }}
+       </p>
+       <p>
+           {{ form.address.label }}<br>
+           {{ form.address(size=32) }}
+       </p>       
+       <p>
+           {{ form.password.label }}<br>
+           {{ form.password(size=32) }}
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+           <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </p>
+       <p>
+           {{ form.repassword.label }}<br>
+           {{ form.repassword(size=32) }}
+           {% if form.repassword.errors %}
+           {% for error in form.repassword.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %} 
+           {% endif %}
+        </p>
+       <p>  {{ form.submit() }}</p>
+    </form>
+</div>
+
+{% endblock %}

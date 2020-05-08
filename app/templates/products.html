@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    {% for i in products %}
+    <div>
+        <ul>
+            <li>Name: {{ i.name }}</li>
+            <li>Company: {{ i.company }}</li>
+            <li>Category: <a href="">{{ i.category}}</a></li>
+        </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
