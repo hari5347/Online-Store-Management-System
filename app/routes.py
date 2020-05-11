@@ -1,8 +1,10 @@
 from app import app,db
-from flask import render_template,url_for,redirect,flash
-from app.forms import LoginForm,RegistrationForm
-from app.models import User
-from flask_login import current_user, login_user,logout_user
+from flask import render_template,url_for,redirect,flash,request
+from app.forms import LoginForm,RegistrationForm,AddProductForm
+from app.models import User,Product
+from flask_login import current_user,login_user,logout_user
+from werkzeug.utils import secure_filename
+import os
 
 @app.route('/')
 @app.route('/index')
@@ -11,7 +13,7 @@ def index():
 
 @app.route('/products')
 def products():
-    products = [{'id':1,'category':'electronics','name':'redmi5A','company':'Xiaomi'}]
+    products = Product.query.all()
     return render_template("products.html",products=products,title='Products')
 
 @app.route('/login',methods=['POST','GET'])
@@ -46,3 +48,20 @@ def register():
         flash('Congratulations, You have registered')
         return redirect(url_for('login'))
     return render_template('register.html',form=form,title='Sign Up')
+
+@app.route('/products/add',methods=['POST','GET'])
+def add_products():
+    if current_user.is_anonymous:
+        return redirect(url_for('login'))
+    form = AddProductForm()
+    if form.validate_on_submit():
+        f = form.image.data
+        filename = secure_filename(f.filename)
+        product = Product(name=form.name.data,category=form.category.data,price=form.price.data,description=form.description.data,image=filename,quantity=form.quantity.data)
+        basedir = os.path.abspath(os.path.dirname(__file__))      
+        f.save(os.path.join(basedir,'static',filename))
+        db.session.add(product)
+        db.session.commit()
+        flash('Your product has been added')
+        return redirect(url_for('products'))
+    return render_template('addproduct.html',form=form,title='Add Product')

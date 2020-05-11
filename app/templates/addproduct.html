@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="" method='POST' enctype="multipart/form-data" novalidate>
+       {{ form.hidden_tag() }}
+       <p>
+           {{ form.name.label }}<br>
+           {{ form.name(size=32) }}
+           {% if form.name.errors %}
+           {% for error in form.name.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %}
+            {% endif %}
+        </p>
+       <p>
+           {{ form.category.label }}<br>
+           {{ form.category(size=32) }}
+           {% if form.category.errors %}
+           {% for error in form.category.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %} 
+           {% endif %}
+        </p>
+        <p>
+           {{ form.price.label }}<br>
+           {{ form.price(size=32) }}
+            {% if form.price.errors %}
+            {% for error in form.price.errors %}
+           <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+        </p>
+        <p>
+           {{ form.description.label }}<br>
+           {{ form.description(size=32) }}
+           {% if form.description.errors %}
+           {% for error in form.description.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %} 
+           {% endif %}
+        </p>
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image(size=32) }}
+            {% if form.image.errors %}
+            {% for error in form.image.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %} 
+            {% endif %}
+         </p>
+         <p>
+            {{ form.quantity.label }}<br>
+            {{ form.quantity(size=32) }}
+            {% if form.quantity.errors %}
+            {% for error in form.quantity.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %} 
+            {% endif %}
+         </p>
+        <p>  {{ form.submit() }}</p>
+    </form>
+</div>
+
+
+{% endblock %}

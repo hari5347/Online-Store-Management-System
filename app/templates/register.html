@@ -37,15 +37,7 @@
            {% endfor %} 
            {% endif %}
         </p>
-       <p>
-           {{ form.country.label }}<br>
-           {{ form.country(size=32) }}
-       </p>
-       <p>
-           {{ form.address.label }}<br>
-           {{ form.address(size=32) }}
-       </p>       
-       <p>
+        <p>
            {{ form.password.label }}<br>
            {{ form.password(size=32) }}
             {% if form.password.errors %}
@@ -54,7 +46,7 @@
             {% endfor %}
             {% endif %}
         </p>
-       <p>
+        <p>
            {{ form.repassword.label }}<br>
            {{ form.repassword(size=32) }}
            {% if form.repassword.errors %}
@@ -63,7 +55,7 @@
            {% endfor %} 
            {% endif %}
         </p>
-       <p>  {{ form.submit() }}</p>
+        <p>  {{ form.submit() }}</p>
     </form>
 </div>
 

@@ -8,10 +8,13 @@
 {% block content %}
     {% for i in products %}
     <div>
+        <img src="{{ url_for('static',filename=i.image) }}" width="100" height="200"></a>
         <ul>
             <li>Name: {{ i.name }}</li>
-            <li>Company: {{ i.company }}</li>
+            <li>Description: {{ i.description }}</li>
             <li>Category: <a href="">{{ i.category}}</a></li>
+            <li>Price: {{ i.price }}</li>
+            <li>Date added: {{ i.timestamp }}</li>
         </ul> 
     </div>
     {% endfor %}
